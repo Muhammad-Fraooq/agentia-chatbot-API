@@ -1,43 +1,38 @@
-# Agentia Backend API
+# Agentia-World Backend API
 
-FastAPI backend for Agentia AI Assistant using OpenAI Agents SDK.
+FastAPI backend for Agentia-World, deployable on Hugging Face Spaces.
 
-## Setup
+## Deployment on Hugging Face Spaces
 
-1. **Install dependencies:**
-   ```bash
-   cd app/api/backend
-   pip install uv
-   uv sync
-   ```
+1. Create a new Space on Hugging Face
+2. Select **Docker** as the SDK
+3. Upload these files:
+   - `Dockerfile`
+   - `requirements.txt`
+   - `main.py` (and other application files)
+   - `.env` (with your API keys, or use Spaces Secrets)
 
-2. **Create `.env` file:**
-   Create a `.env` file in the root directory with:
-   ```env
-   OPENAI_API_KEY=your_openai_api_key_here
-   GEMINI_API_KEY=your_gemini_api_key_here
-   ```
+## Environment Variables
 
-3. **Run the backend server:**
-   ```bash
-   cd app/api/backend
-   uv run python main.py
-   ```
-   
-   Or with uvicorn directly:
-   ```bash
-   uv run uvicorn main:app --reload --host 0.0.0.0 --port 8000
-   ```
+Set these in your Hugging Face Space settings:
 
-4. **Test the API:**
-   - Open `http://localhost:8000` in your browser
-   - Test the chat endpoint at `POST /api/backend/chat`
+- `PORT`: 7860 (default)
+- `HOST`: 0.0.0.0
+- Any additional API keys required by your application
+
+## Local Development
+
+```bash
+# Build the Docker image
+docker build -t agentia-world-backend .
+
+# Run the container
+docker run -p 7860:7860 agentia-world-backend
+```
 
 ## API Endpoints
 
-- `GET /` - Welcome message
-- `POST /api/backend/chat` - Chat with the AI assistant
+Once deployed, access the API at: `https://<your-space-id>.hf.space`
 
-## Tools
-
-- **Weather Tool**: Get current weather using WeatherAPI.com
+- `GET /` - Health check
+- `GET /docs` - Interactive API documentation

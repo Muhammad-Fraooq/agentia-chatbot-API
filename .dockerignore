@@ -1,0 +1,41 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+.env
+.venv
+venv/
+ENV/
+
+# Git
+.git
+.gitignore
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node.js (not needed for Python backend)
+node_modules/
+.next/
+.npm/
+
+# Build artifacts
+*.log
+.DS_Store
+Thumbs.db
+
+# Documentation (keep only requirements.txt)
+*.md
+!requirements.txt
+
+# Python tooling
+.python-version
+pyproject.toml
+uv.lock
