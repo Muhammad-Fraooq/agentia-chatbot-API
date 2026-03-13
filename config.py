@@ -10,18 +10,15 @@ load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY", "")
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-
-# Use Google Gemini directly (more reliable than OpenRouter free tier)
-BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
+BASE_URL = os.getenv("BASE_URL")
 
 client = AsyncOpenAI(
-    api_key=GEMINI_API_KEY,
+    api_key=OPENROUTER_API_KEY,
     base_url=BASE_URL
 )
 
 # Gemini model via Google AI Studio
-MODEL = "gemini-2.0-flash"
+MODEL = "qwen/qwen-2.5-72b-instruct"
 
 model = OpenAIChatCompletionsModel(model=MODEL, openai_client=client)
 
